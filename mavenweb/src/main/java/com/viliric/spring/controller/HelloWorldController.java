@@ -2,16 +2,12 @@ package com.viliric.spring.controller;
 
 import com.viliric.spring.DAO.model.Student;
 import com.viliric.spring.DAO.model.StudentDAO;
-import com.viliric.spring.DAO.model.StudentDAOImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.sql.DataSource;
 
 @Controller
 public class HelloWorldController {
