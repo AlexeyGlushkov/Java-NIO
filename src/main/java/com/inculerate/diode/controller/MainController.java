@@ -93,6 +93,7 @@ public class MainController {
     }
 
     @RequestMapping("/createUser")
+    @Transactional(isolation= Isolation.READ_UNCOMMITTED)
     public @ResponseBody
     Request createUser(
                     @RequestParam("surname") String surname,
