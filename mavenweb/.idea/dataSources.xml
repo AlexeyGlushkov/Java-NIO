@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3850922221">
-    <data-source source="LOCAL" name="PostgreSQL - postgres@localhost" uuid="433020c7-5666-4357-80de-71b28b8c69e9">
+  <component name="DataSourceManagerImpl" format="xml" hash="440549859">
+    <data-source source="LOCAL" name="PostgreSQL - smartled@localhost" uuid="433020c7-5666-4357-80de-71b28b8c69e9">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
-      <libraries />
+      <jdbc-url>jdbc:postgresql://localhost:5432/smartled</jdbc-url>
     </data-source>
   </component>
 </project>
