@@ -40,14 +40,18 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void update(User user) {
-        String sql = "UPDATE users SET pathword=? WHERE id=?";
-        jdbcTemplate.update(sql, getPreparedStatementUpdate(user));
+    public void updatePassword(User user) {
+        String sql = "UPDATE users SET password=? WHERE user_id=?";
+        jdbcTemplate.update(sql, getPreparedStatementUpdatePassword(user));
     }
 
     @Override
-    public void delete(User user) {
-        jdbcTemplate.update("DELETE FROM users WHERE id=?", user.getId());
+    public void updateUserInfo(User user) {
+        String sql = "UPDATE users " +
+                " SET surname=?, name=?, " +
+                " patronymic=?, email=? " +
+                " WHERE user_id=?;";
+        jdbcTemplate.update(sql, getPreparedStatementUserInfo(user));
     }
 
     @Override
@@ -80,19 +84,38 @@ public class UserDAOImpl implements UserDAO {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getInt("user_id"));
             user.setLogin(rs.getString("login"));
-            user.setPathword(rs.getString("pathword"));
+            user.setPassword(rs.getString("password"));
+            user.setSurname(rs.getString("surname"));
+            user.setName(rs.getString("name"));
+            user.setPatronymic(rs.getString("patronymic"));
+            user.setEmail(rs.getString("email"));
             return user;
         }
     };
 
-    private PreparedStatementSetter getPreparedStatementUpdate(final User user) {
+    private PreparedStatementSetter getPreparedStatementUpdatePassword(final User user) {
         return new PreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps) throws SQLException {
             int i = 0;
-            ps.setString(++i, user.getPathword());
+            ps.setString(++i, user.getPassword());
+            ps.setInt(++i, user.getId());
+            }
+        };
+    }
+
+    private PreparedStatementSetter getPreparedStatementUserInfo(final User user) {
+        return new PreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps) throws SQLException {
+                int i = 0;
+                ps.setString(++i, user.getSurname());
+                ps.setString(++i, user.getName());
+                ps.setString(++i, user.getPatronymic());
+                ps.setString(++i, user.getEmail());
+                ps.setInt(++i, user.getId());
             }
         };
     }
@@ -103,7 +126,7 @@ public class UserDAOImpl implements UserDAO {
             public void setValues(PreparedStatement ps) throws SQLException {
                 int i = 0;
                 ps.setString(++i, user.getLogin());
-                ps.setString(++i, user.getPathword());
+                ps.setString(++i, user.getPassword());
             }
         };
     }

@@ -6,15 +6,45 @@ package com.inculerate.diode.DAO.model;
 public class User {
     private int Id;
     private String Login;
-    private String Pathword;
+    private String Password;
+    private String Surname;
+    private String Name;
+    private String Patronymic;
+    private String Email;
 
-    public User(String login, String pathword) {
+
+    public User(String login, String password) {
         Login = login;
-        Pathword = pathword;
+        Password = password;
     }
 
     public User() {
 
+    }
+
+
+    public String getSurname() {
+        return Surname;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getPatronymic() {
+        return Patronymic;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public String getLogin() {
+        return Login;
+    }
+
+    public String getPassword() {
+        return Password;
     }
 
     public int getId() {
@@ -25,19 +55,27 @@ public class User {
         Id = id;
     }
 
-    public String getLogin() {
-        return Login;
-    }
-
-    public String getPathword() {
-        return Pathword;
-    }
-
     public void setLogin(String login) {
         Login = login;
     }
 
-    public void setPathword(String pathword) {
-        Pathword = pathword;
+    public void setPassword(String password) {
+        this.Password = password;
+    }
+
+    public void setSurname(String surname) {
+        Surname = surname;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setPatronymic(String patronymic) {
+        Patronymic = patronymic;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
     }
 }

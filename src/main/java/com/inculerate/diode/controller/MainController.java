@@ -40,6 +40,58 @@ public class MainController {
         return result;
     }
 
+    @RequestMapping("/updatePassword")
+    public @ResponseBody
+    Request updatePassword(@RequestParam("user_id") int user_id,
+                           @RequestParam("new_pass") String new_pass,
+                          Model model){
+        ApplicationContext context = new ClassPathXmlApplicationContext(
+                "beans.xml");
+        UserDAO userDAOImpl = (UserDAO) context.getBean("usersDAO");
+        Request result = new Request();
+        try {
+            User user = new User();
+            user.setId(user_id);
+            user.setPassword(new_pass);
+            userDAOImpl.updatePassword(user);
+            result.setResult(true);
+            result.setResponceStatus(Responses.RES_OK);
+        }catch (Exception e){
+            result.setResult(false);
+            result.setResponceStatus(Responses.RES_FATAL);
+        }
+        return result;
+    }
+
+    @RequestMapping("/updateInfo")
+    public @ResponseBody
+    Request updateInfo(@RequestParam("user_id") int user_id,
+                       @RequestParam("surname") String surname,
+                       @RequestParam("name") String name,
+                       @RequestParam("patronymic") String patronymic,
+                       @RequestParam("email") String email,
+                           Model model){
+        ApplicationContext context = new ClassPathXmlApplicationContext(
+                "beans.xml");
+        UserDAO userDAOImpl = (UserDAO) context.getBean("usersDAO");
+        Request result = new Request();
+        try {
+            User user = new User();
+            user.setId(user_id);
+            user.setSurname(surname);
+            user.setName(name);
+            user.setPatronymic(patronymic);
+            user.setEmail(email);
+            userDAOImpl.updateUserInfo(user);
+            result.setResult(true);
+            result.setResponceStatus(Responses.RES_OK);
+        }catch (Exception e){
+            result.setResult(false);
+            result.setResponceStatus(Responses.RES_FATAL);
+        }
+        return result;
+    }
+
     @RequestMapping("/insert")
     public @ResponseBody
     Request insert(@RequestParam(value = "login", required = false, defaultValue = "") String login,
@@ -59,7 +111,7 @@ public class MainController {
             User user = new User();
 
             user.setLogin(login);
-            user.setPathword(password);
+            user.setPassword(password);
 
             userDAOImpl.insert(user);
 

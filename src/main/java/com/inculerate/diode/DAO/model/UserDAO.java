@@ -7,10 +7,8 @@ import java.util.List;
  */
 public interface UserDAO {
     void insert(User user);
-
-    void update(User user);
-
-    void delete(User user);
+    void updatePassword(User user);
+    void updateUserInfo(User user);
 
     boolean authorization(String login, String password);
     boolean loginIsFree(String login);
