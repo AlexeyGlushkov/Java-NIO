@@ -1,4 +1,4 @@
-package com.inculerate.diode.DAO.model;
+package com.viliric.DAO.model;
 
 import java.util.List;
 

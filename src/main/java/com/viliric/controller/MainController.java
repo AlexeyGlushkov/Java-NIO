@@ -1,9 +1,9 @@
-package com.inculerate.diode.controller;
+package com.viliric.controller;
 
-import com.inculerate.diode.DAO.model.UserDAO;
-import com.inculerate.diode.JSONResults.Request;
-import com.inculerate.diode.DAO.model.User;
-import com.inculerate.diode.JSONResults.Responses;
+import com.viliric.DAO.model.UserDAO;
+import com.viliric.JSONResults.Request;
+import com.viliric.DAO.model.User;
+import com.viliric.JSONResults.Responses;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;

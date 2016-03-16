@@ -1,4 +1,4 @@
-package com.inculerate.diode.JSONResults;
+package com.viliric.JSONResults;
 
 /**
  * Created by Lenovo on 15.03.2016.

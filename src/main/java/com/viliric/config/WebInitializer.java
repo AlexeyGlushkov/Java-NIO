@@ -1,4 +1,4 @@
-package com.inculerate.diode.config;
+package com.viliric.config;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

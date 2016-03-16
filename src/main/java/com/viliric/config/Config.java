@@ -1,4 +1,4 @@
-package com.inculerate.diode.config;
+package com.viliric.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
