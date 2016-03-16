@@ -8,10 +8,6 @@
  http://www.springframework.org/schema/context/spring-context-4.0.xsd"
 >
 
-<<<<<<< HEAD
-=======
-    <context:component-scan base-package="com.viliric.controller" />
->>>>>>> df07116deae95bec7206e2f73e319c9f8bbc1098
 
     <context:component-scan base-package="com.inculerate.diode.controller" />
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -31,20 +27,14 @@
     </bean>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-<<<<<<< HEAD
+
         <property name="driverClassName" value="${drivername}" />
         <property name="url" value="${url}" />
         <property name="username" value="${username}" />
         <property name="password" value="${password}" />
-=======
-        <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/demo" />
-        <property name="username" value="postgres" />
-        <property name="password" value="1q2w3e4r" />
->>>>>>> df07116deae95bec7206e2f73e319c9f8bbc1098
     </bean>
 
-    <bean id="usersDAO" class="com.viliric.DAO.model.UserDAOImpl">
+    <bean id="usersDAO" class="com.inculerate.diode.DAO.model.UserDAOImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
