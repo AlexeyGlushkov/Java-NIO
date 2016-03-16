@@ -92,10 +92,15 @@ public class MainController {
         return result;
     }
 
-    @RequestMapping("/insert")
+    @RequestMapping("/createUser")
     public @ResponseBody
-    Request insert(@RequestParam(value = "login", required = false, defaultValue = "") String login,
-                   @RequestParam(value = "password", required = false, defaultValue = "") String password,
+    Request createUser(
+                    @RequestParam("surname") String surname,
+                    @RequestParam("name") String name,
+                    @RequestParam("patronymic") String patronymic,
+                    @RequestParam("email") String email,
+                    @RequestParam(value = "login") String login,
+                    @RequestParam(value = "password") String password,
                    Model model ){
 
         ApplicationContext context = new ClassPathXmlApplicationContext(
@@ -110,6 +115,10 @@ public class MainController {
         if (userDAOImpl.loginIsFree(login)) {
             User user = new User();
 
+            user.setSurname(surname);
+            user.setName(name);
+            user.setPatronymic(patronymic);
+            user.setEmail(email);
             user.setLogin(login);
             user.setPassword(password);
 

@@ -35,7 +35,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void insert(User user) {
-        String sql = "INSERT INTO users(login, password) VALUES(?,?)";
+        String sql = "INSERT INTO users(" +
+                "            login, password, surname, name, patronymic, email)" +
+                "    VALUES (?, ?, ?, ?, ?, ?);";
         jdbcTemplate.update(sql, getPreparedStatementInsert(user));
     }
 
@@ -127,6 +129,10 @@ public class UserDAOImpl implements UserDAO {
                 int i = 0;
                 ps.setString(++i, user.getLogin());
                 ps.setString(++i, user.getPassword());
+                ps.setString(++i, user.getSurname());
+                ps.setString(++i, user.getName());
+                ps.setString(++i, user.getPatronymic());
+                ps.setString(++i, user.getEmail());
             }
         };
     }
