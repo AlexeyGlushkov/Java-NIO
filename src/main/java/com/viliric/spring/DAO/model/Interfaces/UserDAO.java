@@ -1,4 +1,6 @@
-package com.inculerate.diode.DAO.model;
+package com.viliric.spring.DAO.model.Interfaces;
+
+import com.viliric.spring.DAO.model.Entities.User;
 
 import java.util.List;
 

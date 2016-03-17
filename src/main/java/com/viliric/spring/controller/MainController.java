@@ -1,9 +1,11 @@
-package com.inculerate.diode.controller;
+package com.viliric.spring.controller;
 
-import com.inculerate.diode.DAO.model.User;
-import com.inculerate.diode.DAO.model.UserDAO;
-import com.inculerate.diode.JSONResults.Request;
-import com.inculerate.diode.JSONResults.Responses;
+import com.viliric.spring.DAO.model.Entities.Group;
+import com.viliric.spring.DAO.model.Entities.User;
+import com.viliric.spring.DAO.model.Interfaces.GroupDAO;
+import com.viliric.spring.DAO.model.Interfaces.UserDAO;
+import com.viliric.spring.JSONResults.Request;
+import com.viliric.spring.JSONResults.Responses;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -12,8 +14,19 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class MainController {
+    private static ApplicationContext context;
+    private static GroupDAO groupDAOimpl;
+    private static UserDAO userDAOImpl ;
+
+    static {
+        context = new ClassPathXmlApplicationContext("beans.xml");
+        groupDAOimpl = (GroupDAO) context.getBean("groupDAO");
+        userDAOImpl = (UserDAO) context.getBean("usersDAO");
+    }
 
     @RequestMapping("/authorication")
     @Transactional(isolation= Isolation.READ_UNCOMMITTED)
@@ -21,9 +34,7 @@ public class MainController {
     Request authorication(@RequestParam("login") String login,
                           @RequestParam("password") String password,
                           Model model){
-        ApplicationContext context = new ClassPathXmlApplicationContext(
-                "beans.xml");
-        UserDAO userDAOImpl = (UserDAO) context.getBean("usersDAO");
+
         userDAOImpl.authorization(login, password);
         Request result = new Request();
 
@@ -45,9 +56,7 @@ public class MainController {
     Request updatePassword(@RequestParam("user_id") int user_id,
                            @RequestParam("new_pass") String new_pass,
                           Model model){
-        ApplicationContext context = new ClassPathXmlApplicationContext(
-                "beans.xml");
-        UserDAO userDAOImpl = (UserDAO) context.getBean("usersDAO");
+
         Request result = new Request();
         try {
             User user = new User();
@@ -71,9 +80,7 @@ public class MainController {
                        @RequestParam("patronymic") String patronymic,
                        @RequestParam("email") String email,
                            Model model){
-        ApplicationContext context = new ClassPathXmlApplicationContext(
-                "beans.xml");
-        UserDAO userDAOImpl = (UserDAO) context.getBean("usersDAO");
+
         Request result = new Request();
         try {
             User user = new User();
@@ -103,11 +110,6 @@ public class MainController {
                     @RequestParam(value = "login") String login,
                     @RequestParam(value = "password") String password,
                    Model model ){
-
-        ApplicationContext context = new ClassPathXmlApplicationContext(
-                "beans.xml");
-
-        UserDAO userDAOImpl = (UserDAO) context.getBean("usersDAO");
 
         Boolean result = false;
         Request resultJSON = new Request();
@@ -143,4 +145,91 @@ public class MainController {
         return resultJSON;
     }
 
+    @RequestMapping("/createGroup")
+    @Transactional(isolation= Isolation.READ_UNCOMMITTED)
+    public @ResponseBody
+    Request createGroup(
+            @RequestParam("name") String name){
+
+        Boolean result = false;
+        Request resultJSON = new Request();
+
+        try {
+            Group group = new Group();
+            group.setName(name);
+            groupDAOimpl.insert(group);
+            resultJSON.setResponceStatus(Responses.RES_OK);
+        }
+        catch (Exception e)
+        {
+            result = false;
+            resultJSON.setResponceStatus(Responses.RES_FATAL);
+        }
+        resultJSON.setResult(result);
+
+        return resultJSON;
+    }
+
+    @RequestMapping("/updateGroup")
+    @Transactional(isolation= Isolation.READ_UNCOMMITTED)
+    public @ResponseBody
+    Request updateGroup(
+            @RequestParam("id") int group_id,
+            @RequestParam("name") String name){
+
+        Boolean result = false;
+        Request resultJSON = new Request();
+
+        try {
+            Group group = new Group();
+            group.setName(name);
+            group.setId(group_id);
+            groupDAOimpl.update(group);
+            resultJSON.setResponceStatus(Responses.RES_OK);
+        }
+        catch (Exception e)
+        {
+            result = false;
+            resultJSON.setResponceStatus(Responses.RES_FATAL);
+        }
+        resultJSON.setResult(result);
+
+        return resultJSON;
+    }
+
+    @RequestMapping("/deleteGroup")
+    @Transactional(isolation= Isolation.READ_UNCOMMITTED)
+    public @ResponseBody
+    Request deleteGroup(
+            @RequestParam("id") int group_id){
+
+        Boolean result = false;
+        Request resultJSON = new Request();
+
+        try {
+            Group group = new Group();
+            group.setId(group_id);
+            groupDAOimpl.delete(group);
+            resultJSON.setResponceStatus(Responses.RES_OK);
+        }
+        catch (Exception e)
+        {
+            result = false;
+            resultJSON.setResponceStatus(Responses.RES_FATAL);
+        }
+        resultJSON.setResult(result);
+
+        return resultJSON;
+    }
+
+    @RequestMapping("/selectAllGroups")
+    @Transactional(isolation= Isolation.READ_UNCOMMITTED)
+    public @ResponseBody
+    List<Group> deleteGroup(){
+
+        Boolean result = false;
+        Request resultJSON = new Request();
+
+        return groupDAOimpl.selectAll();
+    }
 }

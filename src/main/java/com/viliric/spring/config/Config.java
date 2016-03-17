@@ -1,4 +1,4 @@
-package com.inculerate.diode.config;
+package com.viliric.spring.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration //Marks this class as configuration
 //Specifies which package to scan
-@ComponentScan("com.inculerate.diode")
+@ComponentScan("com.viliric.spring")
 //Enables Spring's annotations
 @EnableWebMvc
 public class Config {

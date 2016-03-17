@@ -1,5 +1,7 @@
-package com.inculerate.diode.DAO.model;
+package com.viliric.spring.DAO.model.Implementation;
 
+import com.viliric.spring.DAO.model.Entities.User;
+import com.viliric.spring.DAO.model.Interfaces.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.*;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

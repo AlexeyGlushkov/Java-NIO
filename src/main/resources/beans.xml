@@ -9,7 +9,7 @@
 >
 
 
-    <context:component-scan base-package="com.inculerate.diode.controller" />
+    <context:component-scan base-package="com.viliric.spring.controller" />
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
             <value>/WEB-INF/views/</value>
@@ -34,7 +34,11 @@
         <property name="password" value="${password}" />
     </bean>
 
-    <bean id="usersDAO" class="com.inculerate.diode.DAO.model.UserDAOImpl">
+    <bean id="usersDAO" class="com.viliric.spring.DAO.model.Implementation.UserDAOImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="groupDAO" class="com.viliric.spring.DAO.model.Implementation.GroupDAOImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 

@@ -7,7 +7,7 @@
  http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 >
 
-    <context:component-scan base-package="com.inculerate.diode.controller" />
+    <context:component-scan base-package="com.viliric.spring.controller" />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
