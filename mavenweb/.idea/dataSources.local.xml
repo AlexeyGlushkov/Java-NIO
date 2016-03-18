@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - smartled@localhost" uuid="433020c7-5666-4357-80de-71b28b8c69e9">
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <schema-pattern>smartled.*</schema-pattern>
+    </data-source>
+  </component>
+</project>
