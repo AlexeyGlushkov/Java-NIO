@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: libs/postgresql-9.4.1208.jar
+Main-Class: javanio_app.MainClass
+

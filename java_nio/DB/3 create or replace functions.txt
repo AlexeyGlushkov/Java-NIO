@@ -1,0 +1,37 @@
+
+CREATE OR REPLACE FUNCTION public.auth(
+    lg text,
+    ps text)
+  RETURNS integer AS
+$BODY$
+DECLARE
+  ret integer;
+BEGIN
+	return
+		case when $2 = password then 1 else 0 end as "Status"
+	from users  
+	where login = $1;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION public.auth(text, text)
+  OWNER TO postgres;
+  
+  
+CREATE OR REPLACE FUNCTION public.loginIsFree(lg text)
+  RETURNS integer AS
+$BODY$
+DECLARE
+  ret integer;
+BEGIN
+	return
+		count(user_id)
+	from users   
+	where login = $1;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION public.loginIsFree(text)
+  OWNER TO postgres;
